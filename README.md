@@ -1,6 +1,6 @@
 # Elastic stack (ELK) on Docker
 
-[![Elastic Stack version](https://img.shields.io/badge/Elastic%20Stack-9.0.2-00bfb3?style=flat&logo=elastic-stack)](https://www.elastic.co/blog/category/releases)
+[![Elastic Stack version](https://img.shields.io/badge/Elastic%20Stack-9.0.4-00bfb3?style=flat&logo=elastic-stack)](https://www.elastic.co/blog/category/releases)
 [![Build Status](https://github.com/deviantony/docker-elk/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/deviantony/docker-elk/actions/workflows/ci.yml?query=branch%3Amain)
 [![Join the chat](https://badges.gitter.im/Join%20Chat.svg)](https://app.gitter.im/#/room/#deviantony_docker-elk:gitter.im)
 
@@ -147,6 +147,13 @@ Then, initialize the Elasticsearch users and groups required by docker-elk by ex
 docker compose up setup
 ```
 
+Optionally (but highly recommended), generate encryption keys for Kibana using the following command and copy its output
+to the Kibana configuration file (`kibana/config/kibana.yml`):
+
+```sh
+docker compose up kibana-genkeys
+```
+
 If everything went well and the setup completed without error, start the other stack components:
 
 ```sh
@@ -262,7 +269,7 @@ Elasticsearch data is persisted inside a volume by default.
 In order to entirely shutdown the stack and remove all persisted data, use the following Docker Compose command:
 
 ```sh
-docker compose down -v
+docker compose --profile=setup down -v
 ```
 
 ### Version selection
