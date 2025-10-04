@@ -23,8 +23,6 @@ services:
       - 50000/tcp
       - 50000/udp
       - 9600
-    environment:
-      LS_JAVA_OPTS: -Xms2g -Xms2g
     healthcheck:
       test: ["CMD", "curl", "-fsSL", "http://localhost:9600"]
       <<: *default-healthcheck
